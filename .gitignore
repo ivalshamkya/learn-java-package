@@ -46,3 +46,6 @@ env.json
 event.json
 parameters.dev.json
 parameters.prd.json
+
+Jenkinsfile
+Jenkinsfile-dev

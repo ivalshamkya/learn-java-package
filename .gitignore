@@ -1,0 +1,48 @@
+HELP.md
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### VS Code ###
+.vscode/
+
+### AWS SAM ###
+.aws-sam/
+deploy
+serverless.dev.yaml
+serverless.stg.yaml
+serverless.prd.yaml
+
+### ENV ###
+src/main/resources/.env.local
+src/main/resources/.env.local.prod
+env.json
+event.json
+parameters.dev.json
+parameters.prd.json

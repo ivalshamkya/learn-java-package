@@ -15,32 +15,27 @@ jobs:
         with:
           java-version: '21'
           distribution: 'adopt'
+          # Add these settings for GitHub Packages
+          server-id: github
+          server-username: GITHUB_ACTOR
+          server-password: GITHUB_TOKEN
+      
+      # Add Maven cache for faster builds
+      - name: Cache Maven packages
+        uses: actions/cache@v3
+        with:
+          path: ~/.m2
+          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-m2
+
       - name: Publish package
-        run: mvn deploy
+        run: mvn --batch-mode deploy
         env:
           GITHUB_TOKEN: ${{ secrets.JAVA_TOKEN }}
+
       - name: Delete Old Package Versions
         uses: actions/delete-package-versions@v5.0.0
         with:
           package-name: 'org.learn.ival'
           package-type: 'maven'
           min-versions-to-keep: 5
-          
-# name: Publish Package Jobseeker Entity
-# on:
-#   push:
-#     branches: [master]
-
-# jobs:
-#   delete-package-versions:
-#     runs-on: ubuntu-latest
-#     permissions:
-#       contents: read
-#       packages: write
-#     steps:
-#       - name: Delete Package Versions
-#         uses: actions/delete-package-versions@v5.0.0
-#         with:
-#           package-name: 'org.jobseeker.entity'
-#           package-type: 'maven'
-#           min-versions-to-keep: 5

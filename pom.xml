@@ -76,21 +76,21 @@
         </dependency>
         <!-- End Spring Security -->
 
-        <!-- Begin Jobseeker Entity -->
-        <dependency>
-            <groupId>org.jobseeker</groupId>
-            <artifactId>entity</artifactId>
-            <version>1.7.47-SNAPSHOT</version>
-        </dependency>
-        <!-- End Jobseeker Entity -->
+<!--        &lt;!&ndash; Begin Jobseeker Entity &ndash;&gt;-->
+<!--        <dependency>-->
+<!--            <groupId>org.jobseeker</groupId>-->
+<!--            <artifactId>entity</artifactId>-->
+<!--            <version>1.7.47-SNAPSHOT</version>-->
+<!--        </dependency>-->
+<!--        &lt;!&ndash; End Jobseeker Entity &ndash;&gt;-->
 
-        <!-- Begin Jobseeker Local Authorizer for FullStack Local Development -->
-        <dependency>
-            <groupId>org.jsc.dev</groupId>
-            <artifactId>localauthorizer</artifactId>
-            <version>1.0.1-RELEASE</version>
-        </dependency>
-        <!-- End Jobseeker Local Authorizer for FullStack Local Development -->
+<!--        &lt;!&ndash; Begin Jobseeker Local Authorizer for FullStack Local Development &ndash;&gt;-->
+<!--        <dependency>-->
+<!--            <groupId>org.jsc.dev</groupId>-->
+<!--            <artifactId>localauthorizer</artifactId>-->
+<!--            <version>1.0.1-RELEASE</version>-->
+<!--        </dependency>-->
+<!--        &lt;!&ndash; End Jobseeker Local Authorizer for FullStack Local Development &ndash;&gt;-->
 
         <!-- Start LambdaFunction dependency-->
         <dependency>

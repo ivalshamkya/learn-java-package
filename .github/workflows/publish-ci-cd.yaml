@@ -42,4 +42,4 @@ jobs:
       - name: Build and Install
         run: mvn clean install -B
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.JAVA_TOKEN }}

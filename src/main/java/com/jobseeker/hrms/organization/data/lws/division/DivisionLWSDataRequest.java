@@ -1,4 +1,4 @@
-package com.jobseeker.hrms.candidate.data.general.embed;
+package com.jobseeker.hrms.organization.data.lws.division;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
@@ -8,14 +8,14 @@ import lombok.NoArgsConstructor;
 
 @Data
 @Builder
-@NoArgsConstructor
 @AllArgsConstructor
-public class PhoneItem {
+@NoArgsConstructor
+public class DivisionLWSDataRequest {
 
-    @NotBlank
-    private String countryCode;
+	@NotBlank
+	private String name;
 
-    @NotBlank
-    private String phoneNumber;
+	@NotBlank
+	private String code;
 
 }

@@ -1,37 +1,46 @@
-name: Build and Deploy
+name: Publish Package Learn
 on:
   push:
     branches: [main]
 jobs:
-  build:
+  publish:
     runs-on: ubuntu-latest
+    environment: production
+    permissions:
+      contents: read
+      packages: write
     steps:
       - uses: actions/checkout@v3
-      - name: Set up JDK
-        uses: actions/setup-java@v3
+      - uses: actions/setup-java@v3
         with:
           java-version: '21'
           distribution: 'adopt'
-          
-      - name: Setup Maven settings.xml
-        uses: s4u/maven-settings-action@v2.8.0
-        with:
-          servers: |
-            [{
-              "id": "github-entity",
-              "username": "${{ github.actor }}",
-              "password": "${{ secrets.GITHUB_TOKEN }}"
-            }]
-          repositories: |
-            [{
-              "id": "github",
-              "url": "https://maven.pkg.github.com/Jobseeker-company/entity-of-everything",
-              "snapshots": {
-                "enabled": "true"
-              }
-            }]
-
-      - name: Build with Maven
-        run: mvn -X clean install  # Added -X for debug output
+      - name: Publish package
+        run: mvn deploy
         env:
           GITHUB_TOKEN: ${{ secrets.JAVA_TOKEN }}
+      - name: Delete Old Package Versions
+        uses: actions/delete-package-versions@v5.0.0
+        with:
+          package-name: 'org.learn.ival'
+          package-type: 'maven'
+          min-versions-to-keep: 5
+
+# name: Publish Package Jobseeker Entity
+# on:
+#   push:
+#     branches: [master]
+
+# jobs:
+#   delete-package-versions:
+#     runs-on: ubuntu-latest
+#     permissions:
+#       contents: read
+#       packages: write
+#     steps:
+#       - name: Delete Package Versions
+#         uses: actions/delete-package-versions@v5.0.0
+#         with:
+#           package-name: 'org.jobseeker.entity'
+#           package-type: 'maven'
+#           min-versions-to-keep: 5

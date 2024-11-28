@@ -22,7 +22,7 @@ jobs:
               {
                 "id": "github-entity",
                 "username": "${{ github.actor }}",
-                "password": "${{ secrets.JAVA_TOKEN }}"  # Create this secret in your repo
+                "password": "${{ secrets.JAVA_TOKEN }}"
               }
             ]
           repositories: |

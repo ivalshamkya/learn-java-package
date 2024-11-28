@@ -21,9 +21,6 @@
             <properties>
                 <activatedProperties>local</activatedProperties>
             </properties>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
         </profile>
 
         <profile>
@@ -31,6 +28,9 @@
             <properties>
                 <activatedProperties>sam</activatedProperties>
             </properties>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
         </profile>
     </profiles>
 
@@ -80,7 +80,7 @@
         <dependency>
             <groupId>org.jobseeker</groupId>
             <artifactId>entity</artifactId>
-            <version>LATEST</version>
+            <version>1.7.47-SNAPSHOT</version>
         </dependency>
         <!-- End Jobseeker Entity -->
 

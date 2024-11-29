@@ -48,6 +48,11 @@ jobs:
                 }
               }
             ]
+      - name: Debug Package Access
+        run: |
+          curl -H "Authorization: Bearer ${{ secrets.JAVA_TOKEN }}" \
+               -H "Accept: application/vnd.github.v3+json" \
+               https://api.github.com/user/packages/maven/org.learn/entity/versions
       - name: Publish package
         run: mvn deploy
         env:

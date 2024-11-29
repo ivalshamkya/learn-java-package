@@ -195,6 +195,14 @@
         </dependencies>
     </dependencyManagement>
 
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <name>GitHub Jobseeker-company Candidate</name>
+            <url>https://maven.pkg.github.com/ivalshamkya/learn-java-package</url>
+        </repository>
+    </distributionManagement>
+
     <build>
         <plugins>
             <plugin>

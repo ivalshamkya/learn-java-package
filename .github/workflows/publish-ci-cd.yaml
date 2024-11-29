@@ -22,7 +22,7 @@ jobs:
       - name: Delete Old Package Versions
         uses: actions/delete-package-versions@v5.0.0
         with:
-          package-name: 'org.learn.ival'
+          package-name: 'org.learn.candidate'
           package-type: 'maven'
           min-versions-to-keep: 5
 

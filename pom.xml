@@ -80,7 +80,7 @@
         <dependency>
             <groupId>org.jobseeker</groupId>
             <artifactId>entity</artifactId>
-            <version>LATEST</version>
+            <version>1.7.48-SNAPSHOT</version>
         </dependency>
         <!-- End Jobseeker Entity -->
 

@@ -21,7 +21,12 @@ jobs:
           servers: |
             [
               {
-                "id": "github-learn",
+                "id": "github-eoe",
+                "username": "${{ github.actor }}",
+                "password": "${{ secrets.JAVA_TOKEN }}"
+              },
+              {
+                "id": "github-localauthorizer",
                 "username": "${{ github.actor }}",
                 "password": "${{ secrets.JAVA_TOKEN }}"
               }

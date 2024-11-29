@@ -21,9 +21,6 @@
             <properties>
                 <activatedProperties>local</activatedProperties>
             </properties>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
         </profile>
 
         <profile>
@@ -31,6 +28,9 @@
             <properties>
                 <activatedProperties>sam</activatedProperties>
             </properties>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
         </profile>
     </profiles>
 
@@ -78,7 +78,7 @@
 
         <!-- Begin Jobseeker Entity -->
         <dependency>
-            <groupId>org.jobseeker</groupId>
+            <groupId>org.learn</groupId>
             <artifactId>entity</artifactId>
             <version>1.7.48-SNAPSHOT</version>
         </dependency>
@@ -86,9 +86,9 @@
 
         <!-- Begin Jobseeker Local Authorizer for FullStack Local Development -->
         <dependency>
-            <groupId>org.jsc.dev</groupId>
+            <groupId>org.learn</groupId>
             <artifactId>localauthorizer</artifactId>
-            <version>1.0.1-RELEASE</version>
+            <version>1.0.0-RELEASE</version>
         </dependency>
         <!-- End Jobseeker Local Authorizer for FullStack Local Development -->
 

@@ -6,13 +6,14 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>3.3.0</version>
-        <relativePath/> <!-- lookup parent from repositories -->
+        <relativePath/>
     </parent>
-    <groupId>com.jobseeker.hrms</groupId>
-    <artifactId>Organization-HRMS-API</artifactId>
-    <version>1.0.2-SNAPSHOT</version>
-    <name>Organization HRMS API</name>
-    <description>Organization HRMS API</description>
+
+    <groupId>com.jobseeker.hrms.candidate</groupId>
+    <artifactId>Candidate-HRMS-API</artifactId>
+    <version>1.1.4-RELEASE</version>
+    <name>Candidate HRMS API</name>
+    <description>Candidate HRMS API</description>
 
     <profiles>
         <profile>
@@ -20,6 +21,9 @@
             <properties>
                 <activatedProperties>local</activatedProperties>
             </properties>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
         </profile>
 
         <profile>
@@ -27,9 +31,6 @@
             <properties>
                 <activatedProperties>sam</activatedProperties>
             </properties>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
         </profile>
     </profiles>
 
@@ -41,6 +42,7 @@
 
         <spring-cloud.version>2023.0.2</spring-cloud.version>
         <mongodb-driver.version>5.1.1</mongodb-driver.version>
+        <awspring.version>3.1.0</awspring.version>
 
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
@@ -49,7 +51,6 @@
         <org.projectlombok.version>1.18.30</org.projectlombok.version>
         <lombok-mapstruct-binding.version>0.2.0</lombok-mapstruct-binding.version>
     </properties>
-
     <dependencies>
         <!-- Start Spring Web -->
         <dependency>
@@ -63,11 +64,23 @@
         </dependency>
         <!-- End Spring Web -->
 
+        <!-- Start Spring Security -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <!-- End Spring Security -->
+
         <!-- Begin Jobseeker Entity -->
         <dependency>
             <groupId>org.jobseeker</groupId>
             <artifactId>entity</artifactId>
-            <version>1.7.47-SNAPSHOT</version>
+            <version>LATEST</version>
         </dependency>
         <!-- End Jobseeker Entity -->
 
@@ -120,6 +133,46 @@
             <version>2.2.0</version>
         </dependency>
         <!-- End Swagger dependency-->
+
+        <!-- Start AWSpring dependency-->
+        <dependency>
+            <groupId>io.awspring.cloud</groupId>
+            <artifactId>spring-cloud-aws-starter-sns</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.awspring.cloud</groupId>
+            <artifactId>spring-cloud-aws-starter-s3</artifactId>
+        </dependency>
+        <!-- End AWSpring dependency-->
+
+        <!-- for make custom validation -->
+        <dependency>
+            <groupId>commons-beanutils</groupId>
+            <artifactId>commons-beanutils</artifactId>
+            <version>1.9.4</version>
+        </dependency>
+        <!-- for make custom validation -->
+
+        <!-- Start Poi-->
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi</artifactId>
+            <version>5.2.3</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+            <version>5.2.3</version>
+        </dependency>
+        <!-- End Poi-->
+
+        <!-- Start Apache Commons -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-csv</artifactId>
+            <version>1.9.0</version>
+        </dependency>
+        <!-- End Apache Commons -->
     </dependencies>
 
     <dependencyManagement>
@@ -131,16 +184,16 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+
+            <dependency>
+                <groupId>io.awspring.cloud</groupId>
+                <artifactId>spring-cloud-aws-dependencies</artifactId>
+                <version>${awspring.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
         </dependencies>
     </dependencyManagement>
-
-    <distributionManagement>
-        <repository>
-            <id>github</id>
-            <name>Learn Apache Maven Packages</name>
-            <url>https://maven.pkg.github.com/ivalshamkya/learn-java-package</url>
-        </repository>
-    </distributionManagement>
 
     <build>
         <plugins>

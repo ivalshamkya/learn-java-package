@@ -14,7 +14,7 @@ pipeline {
                     $class: 'GitSCM',
                     branches: [[name: '*/release/prod']],
                     userRemoteConfigs: [[
-                        url: 'https://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@github.com/Jobseeker-company/hrms-api-organization.git'
+                        url: 'https://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@github.com/Jobseeker-company/hrms-api-candidate.git'
                     ]]
                 ])
             }
@@ -23,12 +23,12 @@ pipeline {
         stage('Load Configuration') {
             steps {
                 configFileProvider([
-                    configFile(fileId: 'HRMS_Organization_Serverless', variable: 'SERVERLESS_CONFIG'),
-                    configFile(fileId: 'HRMS_Organization_Env_Prod', variable: 'PARAMETERS_CONFIG')
+                    configFile(fileId: 'HRMS_Candidate_Serverless', variable: 'SERVERLESS_CONFIG'),
+                    configFile(fileId: 'HRMS_Candidate_Env_Prod', variable: 'PARAMETERS_CONFIG')
                 ]) {
                     sh '''
-                        cp $SERVERLESS_CONFIG HRMS_Organization_Serverless
-                        cp $PARAMETERS_CONFIG HRMS_Organization_Env_Prod
+                        cp $SERVERLESS_CONFIG HRMS_Candidate_Serverless
+                        cp $PARAMETERS_CONFIG HRMS_Candidate_Env_Prod
                     '''
                 }
             }
@@ -40,20 +40,20 @@ pipeline {
             }
         }
 
-        stage('SAM Build DSO') {
+        stage('SAM Build') {
             steps {
-                sh 'sam build --template-file HRMS_Organization_Serverless'
+                sh 'sam build --template-file HRMS_Candidate_Serverless'
             }
         }
 
-        stage('SAM Deploy DSO') {
+        stage('SAM Deploy') {
             steps {
                 sh '''
-                    PARAMS=$(jq -r 'to_entries | map(.key + "=" + (.value | tostring)) | join(" ")' HRMS_Organization_Env_Prod)
+                    PARAMS=$(jq -r 'to_entries | map(.key + "=" + (.value | tostring)) | join(" ")' HRMS_Candidate_Env_Prod)
                     sam deploy \
                     --template-file .aws-sam/build/template.yaml \
-                    --stack-name hrms-organization-function \
-                    --s3-bucket hrms-organization-source \
+                    --stack-name hrms-candidate-function \
+                    --s3-bucket hrms-candidate-source \
                     --parameter-overrides "$PARAMS" \
                     --capabilities CAPABILITY_IAM CAPABILITY_AUTO_EXPAND CAPABILITY_NAMED_IAM \
                     --resolve-image-repos \

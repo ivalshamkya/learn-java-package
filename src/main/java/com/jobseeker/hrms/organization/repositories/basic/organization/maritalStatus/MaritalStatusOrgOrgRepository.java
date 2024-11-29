@@ -1,7 +1,0 @@
-package com.jobseeker.hrms.organization.repositories.basic.organization.maritalStatus;
-
-import org.jobseeker.organization.MaritalStatusOrganization;
-import org.jobseeker.organization.repositories.HelperOrganizationRepository;
-
-public interface MaritalStatusOrgOrgRepository extends HelperOrganizationRepository<MaritalStatusOrganization>, MaritalStatusOrgOrgRepositoryExtend {
-}

@@ -14,7 +14,7 @@ pipeline {
                     $class: 'GitSCM',
                     branches: [[name: '*/release/dev']],
                     userRemoteConfigs: [[
-                        url: 'https://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@github.com/Jobseeker-company/hrms-api-organization.git'
+                        url: 'https://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@github.com/Jobseeker-company/hrms-api-candidate.git'
                     ]]
                 ])
             }
@@ -23,12 +23,12 @@ pipeline {
         stage('Load Configuration') {
             steps {
                 configFileProvider([
-                    configFile(fileId: 'HRMS_Organization_Serverless_Dev', variable: 'SERVERLESS_CONFIG'),
-                    configFile(fileId: 'HRMS_Organization_Env_Dev', variable: 'PARAMETERS_CONFIG')
+                    configFile(fileId: 'HRMS_Candidate_Serverless_Dev', variable: 'SERVERLESS_CONFIG'),
+                    configFile(fileId: 'HRMS_Candidate_Env_Dev', variable: 'PARAMETERS_CONFIG')
                 ]) {
                     sh '''
-                        cp $SERVERLESS_CONFIG HRMS_Organization_Serverless_Dev
-                        cp $PARAMETERS_CONFIG HRMS_Organization_Env_Dev
+                        cp $SERVERLESS_CONFIG HRMS_Candidate_Serverless_Dev
+                        cp $PARAMETERS_CONFIG HRMS_Candidate_Env_Dev
                     '''
                 }
             }
@@ -42,18 +42,18 @@ pipeline {
 
         stage('SAM Build') {
             steps {
-                sh 'sam build --template-file HRMS_Organization_Serverless_Dev'
+                sh 'sam build --template-file HRMS_Candidate_Serverless_Dev'
             }
         }
 
         stage('SAM Deploy') {
             steps {
                 sh '''
-                    PARAMS=$(jq -r 'to_entries | map(.key + "=" + (.value | tostring)) | join(" ")' HRMS_Organization_Env_Dev)
+                    PARAMS=$(jq -r 'to_entries | map(.key + "=" + (.value | tostring)) | join(" ")' HRMS_Candidate_Env_Dev)
                     sam deploy \
                     --template-file .aws-sam/build/template.yaml \
-                    --stack-name hrms-organization-dev-function \
-                    --s3-bucket hrms-organization-dev-source \
+                    --stack-name hrms-candidate-dev-function \
+                    --s3-bucket hrms-candidate-dev-source \
                     --parameter-overrides "$PARAMS" \
                     --capabilities CAPABILITY_IAM CAPABILITY_AUTO_EXPAND CAPABILITY_NAMED_IAM \
                     --resolve-image-repos \

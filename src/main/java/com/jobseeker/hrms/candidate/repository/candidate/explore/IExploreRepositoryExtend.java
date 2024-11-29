@@ -7,5 +7,4 @@ import org.springframework.data.domain.Page;
 public interface IExploreRepositoryExtend {
 
     Page<Candidate> findCandidates(ExploreDataRequest exploreDataRequest);
-
 }

@@ -15,6 +15,39 @@ jobs:
         with:
           java-version: '21'
           distribution: 'adopt'
+      - name: Set up Maven settings
+        uses: s4u/maven-settings-action@v2.8.0
+        with:
+          servers: |
+            [
+              {
+                "id": "github-eoe",
+                "username": "${{ github.actor }}",
+                "password": "${{ secrets.JAVA_TOKEN }}"
+              },
+              {
+                "id": "github-localauthorizer",
+                "username": "${{ github.actor }}",
+                "password": "${{ secrets.JAVA_TOKEN }}"
+              }
+            ]
+          repositories: |
+            [
+              {
+                "id": "github-eoe",
+                "url": "https://maven.pkg.github.com/ivalshamkya/entity-of-everything",
+                "snapshots": {
+                  "enabled": "true"
+                }
+              },
+              {
+                "id": "github-localauthorizer",
+                "url": "https://maven.pkg.github.com/ivalshamkya/local-authorizer",
+                "snapshots": {
+                  "enabled": "true"
+                }
+              }
+            ]
       - name: Publish package
         run: mvn deploy
         env:

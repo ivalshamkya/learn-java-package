@@ -52,12 +52,12 @@ jobs:
         run: mvn deploy
         env:
           GITHUB_TOKEN: ${{ secrets.JAVA_TOKEN }}
-      - name: Delete Old Package Versions
-        uses: actions/delete-package-versions@v5.0.0
-        with:
-          package-name: 'com.learn.candidate'
-          package-type: 'maven'
-          min-versions-to-keep: 5
+#      - name: Delete Old Package Versions
+#        uses: actions/delete-package-versions@v5.0.0
+#        with:
+#          package-name: 'com.learn.candidate'
+#          package-type: 'maven'
+#          min-versions-to-keep: 5
 
 # name: Publish Package Jobseeker Entity
 # on:

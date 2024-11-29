@@ -205,9 +205,18 @@
 
     <repositories>
         <repository>
-            <id>github</id>
+            <id>github-eoe</id>
             <name>GitHub Learn Packages</name>
             <url>https://maven.pkg.github.com/ivalshamkya/entity-of-everything</url>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>github-localauthorizer</id>
+            <name>GitHub Learn Packages</name>
+            <url>https://maven.pkg.github.com/ivalshamkya/local-authorizer</url>
             <snapshots>
                 <enabled>true</enabled>
                 <updatePolicy>always</updatePolicy>

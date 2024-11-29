@@ -23,7 +23,7 @@ jobs:
               {
                 "id": "github-learn",
                 "username": "${{ github.actor }}",
-                "password": "${{ secrets.GITHUB_TOKEN }}"
+                "password": "${{ secrets.JAVA_TOKEN }}"
               }
             ]
           repositories: |
